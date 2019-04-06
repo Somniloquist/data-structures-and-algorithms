@@ -17,6 +17,24 @@ class Tree
     nil
   end
 
+  def depth_first_search(value)
+    stack = [root]
+    visited = []
+    until stack.empty?
+      temp = stack[-1]
+      if visited.include?(temp)
+        return temp if temp.value == value
+        stack.pop
+      else
+        stack << temp.right_child unless temp.right_child.nil?
+        stack << temp.left_child unless temp.left_child.nil?
+        visited << temp
+      end
+    end
+
+    nil
+  end
+
   private
   def build_tree(array)
     array.each do |value|
@@ -39,6 +57,6 @@ class Tree
         end
       end
     end
-
   end
+
 end

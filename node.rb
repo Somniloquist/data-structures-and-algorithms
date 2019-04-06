@@ -8,6 +8,6 @@ class Node
   end
 
   def to_s
-    "value: #{value}, parent: #{parent.value}, left_child: #{left_child.value}, right_child: #{right_child.value}"
+    "value: #{value}, parent: #{parent ? parent.value : "nil"}, left_child: #{left_child ? left_child.value : "nil"}, right_child: #{right_child ? right_child.value : "nil"}"
   end
 end
