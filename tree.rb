@@ -26,6 +26,7 @@ class Tree
         return temp if temp.value == value
         stack.pop
       else
+        # this order ensures that the left child is higher on the stack
         stack << temp.right_child unless temp.right_child.nil?
         stack << temp.left_child unless temp.left_child.nil?
         visited << temp
@@ -33,6 +34,15 @@ class Tree
     end
 
     nil
+  end
+
+  def dfs_rec(value, node = root)
+    return if node.nil?
+    left = dfs_rec(value, node.left_child)
+    right = dfs_rec(value, node.right_child)
+    return left if !left.nil? && left.value == value
+    return right if !right.nil? && right.value == value
+    node
   end
 
   private
