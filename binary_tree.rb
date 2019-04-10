@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require "./node.rb"
-require "./tree.rb"
+require "./lib/node.rb"
+require "./lib/tree.rb"
 
 
 data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
