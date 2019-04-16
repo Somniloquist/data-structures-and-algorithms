@@ -2,10 +2,10 @@ class Vertex
   attr_reader :value
   def initialize(value)
     @value = value
-    @neighbors = []
+    @edges = []
   end
 
-  def add_neighbor(vertex)
-    @neighbors << vertex
+  def add_edge(vertex)
+    @edges << vertex
   end
 end

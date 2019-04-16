@@ -1,3 +1,5 @@
+require "./lib/vertex.rb"
+
 class Graph
   attr_accessor :vertices
   def initialize
@@ -13,16 +15,4 @@ class Graph
     @vertices << vertex
   end
 
-end
-
-class ChessBoard < Graph
-  def initialize
-    super
-    build
-  end
-
-  private
-  def build
-    (8*8).times { |i| add_vertex(Vertex.new(i+1)) }
-  end
 end
