@@ -1,8 +1,11 @@
 class Vertex
-  attr_reader :value
-  def initialize(value)
+  attr_accessor :visited, :parent
+  attr_reader :value, :edges
+  def initialize(value, parent = nil)
     @value = value
+    @parent = parent
     @edges = []
+    @visited = false
   end
 
   def add_edge(vertex)
