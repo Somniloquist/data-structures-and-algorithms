@@ -1,14 +1,9 @@
 require './lib/graph'
 
 class ChessBoard < Graph
-  def initialize
-    super
-    build
-  end
-
-  private
-  def build
-    # (8*8).times { |i| add_vertex(Vertex.new(i+1)) }
+  def valid_move(coordinates)
+    coordinates.each {|n| return false unless n.between?(0,7)}
+    true
   end
 end
 

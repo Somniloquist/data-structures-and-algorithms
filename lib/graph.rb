@@ -6,10 +6,6 @@ class Graph
     @vertices = []
   end
 
-  def length
-    @vertices.length
-  end
-
   def root
     @vertices.first
   end
@@ -40,6 +36,7 @@ class Graph
       knight.routes.each do |y,x|
         possible_move = [current_vertex.value[0] + y, current_vertex.value[1] + x]
         if valid_move(possible_move)
+          # keep track of the new vertex's parent for backtracking
           temp = Vertex.new(possible_move, current_vertex)
           current_vertex.add_edge(temp)
           queue.unshift(temp)
@@ -50,29 +47,31 @@ class Graph
       visited << current_vertex.value
       break if current_vertex.value == end_position
     end
-    
-    #DUBUG
-    # puts "after"
-    # puts_queue(queue)
-    # puts_visited(visited)
 
     self
   end
 
-  private
-  # debugging stuff
-  def puts_queue(queue)
-    print("queue: ")
-    queue.each do |vertex|
-      print("#{vertex.value} ")
+  # find shortest path using breadth first search
+  def find_shortest_path(graph, end_position)
+    queue = [graph.root]
+    until queue.empty?
+      temp = queue.pop
+      temp.visited = true
+      return temp if temp.value == end_position
+      temp.edges.each {|edge| queue.unshift(edge) unless edge.visited}
     end
-    puts ""
   end
 
-  def puts_visited(visited)
-    print("visited: ")
-    p visited
+  # backtrack through vertex parents to build the path
+  def show_path(target_vertex)
+    path = []
+    queue = [target_vertex]
+    until queue.empty?
+      temp = queue.pop
+      path << temp.value
+      queue << temp.parent unless temp.parent.nil?
+    end
+    path.reverse
   end
-
 
 end
